@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
@@ -52,11 +52,11 @@
             list-style: none;
             padding: 0;
             width: 90%;
-            max-width: 1100px; /* 稍微加寬以容納三欄 */
+            max-width: 1100px;
             margin-bottom: 50px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 核心：建立三等分欄位 */
-            gap: 20px; /* 卡片之間的間距 */
+            grid-template-columns: repeat(3, 1fr); /* 一行三欄 */
+            gap: 20px;
         }
 
         /* 單字卡片樣式 */
@@ -134,7 +134,7 @@
 <body>
 
     <header>
-        <h1>🚀 每日鄒語單字</h1>
+        <h1>🚀 每日鄒語閃卡</h1>
         <div id="date-display"></div>
     </header>
 
@@ -143,8 +143,8 @@
 
     <script>
         // ==================== 1. 設定你的 Supabase 資訊 ====================
-        const SUPABASE_URL = '你的_PROJECT_URL';    // 請填入你的 Supabase Project URL
-        const SUPABASE_ANON_KEY = '你的_ANON_KEY'; // 請填入你的 Supabase Anon Key
+        const SUPABASE_URL = '你的_PROJECT_URL';    // 請替換為你的 Supabase Project URL
+        const SUPABASE_ANON_KEY = '你的_ANON_KEY'; // 請替換為你的 Supabase Anon Key
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
