@@ -11,8 +11,8 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            /* 調整為截圖裡的淡淡黃色背景 */
-            background: linear-gradient(135deg, #fff588 0%, #ffdf40 100%);
+            /* 調整為極為柔和、不刺眼的溫暖米黃色 / 奶黃色漸層 */
+            background: linear-gradient(135deg, #fcfbdf 0%, #f4f0c4 100%);
             min-height: 100vh;
             color: #333;
             display: flex;
@@ -23,27 +23,29 @@
             text-align: center;
             margin-top: 40px;
             margin-bottom: 30px;
-            color: #2c3e50;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+            color: #4a5568;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
         }
         h1 {
             margin: 0;
             font-size: 2.5em;
             letter-spacing: 1px;
+            color: #2d3748;
         }
         #date-display {
             font-size: 1.2em;
             opacity: 0.95;
             margin-top: 10px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             padding: 5px 15px;
             border-radius: 20px;
             display: inline-block;
-            color: #2c3e50;
+            color: #4a5568;
             font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
         }
         #loading {
-            color: #4a5568;
+            color: #718096;
             font-size: 1.2em;
             margin-top: 20px;
             font-weight: bold;
@@ -61,10 +63,10 @@
         
         /* 卡片設計 */
         .word-card {
-            background: linear-gradient(145deg, #ffffff, #f9fafb);
+            background: linear-gradient(145deg, #ffffff, #fafbfc);
             border-radius: 20px;
             padding: 25px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
             border: 2px solid rgba(255, 255, 255, 0.9);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
@@ -76,7 +78,7 @@
             overflow: hidden;
         }
 
-        /* 卡片上方裝飾條改搭配溫和的暖色系 */
+        /* 卡片上方的裝飾條改為柔和的暖咖啡/大地色調 */
         .word-card::before {
             content: '';
             position: absolute;
@@ -84,13 +86,13 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: linear-gradient(90deg, #f6d365, #fda085);
+            background: linear-gradient(90deg, #d4a373, #faedcd);
         }
 
         .word-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-            border-color: #f6d365;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: #d4a373;
         }
 
         .card-number {
@@ -107,7 +109,7 @@
         .word {
             font-size: 1.6em;
             font-weight: 700;
-            color: #2c3e50;
+            color: #2d3748;
             margin: 10px 0;
             word-break: break-all;
         }
@@ -137,7 +139,7 @@
 <body>
 
     <header>
-        <h1>🚀 每日鄒語閃卡</h1>
+        <h1> 每日鄒語閃卡-初級</h1>
         <div id="date-display"></div>
     </header>
 
@@ -166,7 +168,6 @@
             return ((t ^ t >>> 14) >>> 0) / 4294967296;
         }
 
-        // 調整為每天隨機抓取 6 個單字
         function getDailyWords(allWords, count = 6) {
             const seed = getTodaySeed();
             let shuffled = [...allWords];
