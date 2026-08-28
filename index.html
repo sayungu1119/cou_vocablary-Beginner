@@ -7,7 +7,6 @@
     <!-- 引入 Supabase JS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* 全局設定與背景 */
         body {
             margin: 0;
             padding: 0;
@@ -19,8 +18,6 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* 標題區域 */
         header {
             text-align: center;
             margin-top: 40px;
@@ -28,26 +25,20 @@
             color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-
         h1 {
             margin: 0;
             font-size: 2.5em;
         }
-
         #date-display {
             font-size: 1.2em;
             opacity: 0.9;
             margin-top: 10px;
         }
-
-        /* 載入中提示 */
         #loading {
             color: white;
             font-size: 1.2em;
             margin-top: 20px;
         }
-
-        /* 單字卡片網格容器 (一行三個) */
         #word-list {
             list-style: none;
             padding: 0;
@@ -55,11 +46,9 @@
             max-width: 1100px;
             margin-bottom: 50px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 一行三欄 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
-
-        /* 單字卡片樣式 */
         .word-card {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -70,31 +59,26 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
         .word-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 12px rgba(0,0,0,0.15);
         }
-
         .card-header {
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
             margin-bottom: 10px;
         }
-
         .word {
             font-size: 1.5em;
             font-weight: bold;
             color: #2c3e50;
         }
-
         .meaning {
             font-size: 1.1em;
             color: #34495e;
             margin-bottom: 12px;
             font-weight: 500;
         }
-
         .example-box {
             background-color: #f8f9fa;
             border-left: 4px solid #667eea;
@@ -102,32 +86,23 @@
             font-size: 0.9em;
             border-radius: 0 8px 8px 0;
         }
-
         .sentence {
             color: #555;
             font-style: italic;
             display: block;
         }
-
         .translation {
             color: #777;
             margin-top: 5px;
             display: block;
         }
-
-        /* 手機與平板 RWD 適配 */
         @media (max-width: 900px) {
-            #word-list {
-                grid-template-columns: repeat(2, 1fr); /* 平板改為一行兩個 */
-            }
+            #word-list { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 600px) {
             h1 { font-size: 2em; }
             header { margin-top: 30px; }
-            #word-list {
-                grid-template-columns: 1fr; /* 手機改為一行一個 */
-            }
+            #word-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -143,20 +118,17 @@
 
     <script>
         // ==================== 1. 設定你的 Supabase 資訊 ====================
-        const SUPABASE_URL = 'https://lkhlrzjdrraficyxafuz.supabase.co/rest/v1/';    // 請替換為你的 Supabase Project URL
-        const SUPABASE_ANON_KEY = 'sb_publishable_uK45FRTWY6LqRCtCW4j9XQ_fl_mH-AJ'; // 請替換為你的 Supabase Anon Key
+        const SUPABASE_URL = 'https://lkhlrzjdrraficyxafuz.supabase.co'; // 已修正：移除結尾的 /rest/v1/
+        const SUPABASE_ANON_KEY = 'sb_publishable_uK45FRTWY6LqRCtCW4j9XQ_fl_mH-AJ'; 
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // ==================== 2. 日期與亂數種子邏輯 ====================
         function getTodaySeed() {
             const today = new Date();
             const year = today.getFullYear();
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const day = String(today.getDate()).padStart(2, '0');
-            
             document.getElementById('date-display').innerText = `${year}年${month}月${day}日`;
-            
             return parseInt(`${year}${month}${day}`, 10);
         }
 
@@ -177,7 +149,6 @@
             return shuffled.slice(0, count);
         }
 
-        // ==================== 3. 從 Supabase 抓取資料並渲染 ====================
         async function renderDailyWords() {
             const loadingEl = document.getElementById('loading');
             const ul = document.getElementById('word-list');
@@ -187,9 +158,7 @@
                     .from('vocabulary')
                     .select('*');
 
-                if (error) {
-                    throw error;
-                }
+                if (error) throw error;
 
                 if (!allWords || allWords.length === 0) {
                     loadingEl.innerText = '目前資料庫沒有單字，請先去新增！';
@@ -197,7 +166,6 @@
                 }
 
                 loadingEl.style.display = 'none';
-
                 const dailyWords = getDailyWords(allWords, 10);
                 
                 dailyWords.forEach((item, index) => {
