@@ -55,7 +55,7 @@
             padding: 0;
             width: 90%;
             max-width: 1100px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
@@ -126,6 +126,16 @@
             border-top: 1px dashed #d1e2d9;
         }
 
+        /* 頁尾著作權宣告樣式 */
+        footer {
+            text-align: center;
+            margin: 10px 0 40px 0;
+            color: #4a6b5d;
+            font-size: 0.95em;
+            font-weight: 600;
+            opacity: 0.85;
+        }
+
         @media (max-width: 900px) {
             #word-list { grid-template-columns: repeat(2, 1fr); }
         }
@@ -139,14 +149,22 @@
 <body>
 
     <header>
-        <h1> 🎓 每日鄒語單字 - 初級 🎓 </h1>
+        <h1>🌱 每日鄒語單字 - 初級 📚</h1>
         <div id="date-display"></div>
     </header>
 
     <div id="loading">載入中，請稍候...</div>
     <ul id="word-list"></ul>
 
+    <!-- 著作權與作者宣告 -->
+    <footer>
+        &copy; <span id="copyright-year"></span> 每日鄒語單字. Made by sayungu mʉknana 撒悠老師. All rights reserved.
+    </footer>
+
     <script>
+        // 自動更新版權年份
+        document.getElementById('copyright-year').innerText = new Date().getFullYear();
+
         const SUPABASE_URL = 'https://lkhlrzjdrraficyxafuz.supabase.co'; 
         const SUPABASE_ANON_KEY = 'sb_publishable_uK45FRTWY6LqRCtCW4j9XQ_fl_mH-AJ'; 
         
